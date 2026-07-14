@@ -1,0 +1,12 @@
+2026-07-14 11:58:45,625 - INFO - Endpoint /galinaceos chamado com filtros opcionais
+2026-07-14 11:58:45,673 - INFO - Executando busca dinâmica de galináceos. Query: SELECT id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal FROM galinaceos WHERE 1=1
+2026-07-14 11:58:45,692 - INFO - Retornando 1233 registros filtrados de galináceos
+2026-07-14 11:58:56,135 - INFO - Endpoint /galinaceos chamado com filtros opcionais
+2026-07-14 11:58:56,145 - INFO - Executando busca dinâmica de galináceos. Query: SELECT id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal FROM galinaceos WHERE 1=1 AND sist_cria = %s
+2026-07-14 11:58:56,154 - INFO - Retornando 346 registros filtrados de galináceos
+2026-07-14 11:59:04,374 - INFO - Endpoint /galinaceos chamado com filtros opcionais
+2026-07-14 11:59:04,383 - INFO - Executando busca dinâmica de galináceos. Query: SELECT id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal FROM galinaceos WHERE 1=1 AND niv_terr = %s
+2026-07-14 11:59:04,388 - INFO - Retornando 990 registros filtrados de galináceos
+2026-07-14 11:59:11,506 - INFO - Endpoint /galinaceos chamado com filtros opcionais
+2026-07-14 11:59:11,519 - INFO - Executando busca dinâmica de galináceos. Query: SELECT id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal FROM galinaceos WHERE 1=1 AND sist_cria = %s AND niv_terr = %s AND cod_terr = %s
+2026-07-14 11:59:11,531 - INFO - Retornando 11 registros filtrados de galináceos

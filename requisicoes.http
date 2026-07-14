@@ -1,0 +1,27 @@
+### Teste 1: Buscar todos os registros (sem nenhum filtro)
+GET http://localhost:5001/galinaceos
+Accept: application/json
+
+###
+
+### Teste 2: Filtrar pelo Sistema de Criação (SIST_CRIA)
+GET http://localhost:5001/galinaceos?SIST_CRIA=1-SIST_POC
+Accept: application/json
+
+###
+
+### Teste 3: Filtrar pelo Nível Territorial (NIV_TERR)
+GET http://localhost:5001/galinaceos?NIV_TERR=UF
+Accept: application/json
+
+###
+
+### Teste 4: Filtrar combinando Múltiplos Filtros (SIST_CRIA + NIV_TERR + COD_TERR)
+GET http://localhost:5001/galinaceos?SIST_CRIA=1-SIST_POC&NIV_TERR=UF&COD_TERR=53
+Accept: application/json
+
+###
+
+### Teste 5: Filtrar por busca parcial no Nome do Território (NOM_TERR)
+GET http://localhost:5001/galinaceos?NOM_TERR=Distrito
+Accept: application/json

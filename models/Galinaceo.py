@@ -1,20 +1,46 @@
-class Galinaceo:
-    def __init__(self, id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal):
-        self.id = id
-        self.sist_cria = sist_cria
-        self.niv_terr = niv_terr
-        self.cod_terr = cod_terr
-        self.nom_terr = nom_terr
-        self.cl_gal = cl_gal
-        self.nom_cl_gal = nom_cl_gal
+from marshmallow import Schema, fields
+from flask_restful import fields as dto
 
-    def toDict(self):
-        return {
-            "id": self.id,
-            "SIST_CRIA": self.sist_cria,
-            "NIV_TERR": self.niv_terr,
-            "COD_TERR": self.cod_terr,
-            "NOM_TERR": self.nom_terr,
-            "CL_GAL": self.cl_gal,
-            "NOM_CL_GAL": self.nom_cl_gal
-        }
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import String, Integer, ForeignKey
+
+from helpers.database import db
+
+galinaceo_fields = {
+    'id': dto.Integer,
+    'sist_cria': dto.String,
+    'niv_terr': dto.String,
+    'cod_terr': dto.String,
+    'nom_terr': dto.String,
+    'cl_gal': dto.String,
+    'galpao_id': dto.Integer,
+}
+
+class Galinaceo(db.Model):
+    __tablename__ = "tb_galinaceo"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    sist_cria: Mapped[str] = mapped_column(String(), nullable=False)
+    niv_terr: Mapped[str] = mapped_column(String(), nullable=False)
+    cod_terr: Mapped[str] = mapped_column(String(), nullable=False)
+    nom_terr: Mapped[str] = mapped_column(String(), nullable=False)
+    cl_gal: Mapped[str] = mapped_column(String(), nullable=False)
+
+    galpao_id: Mapped[int] = mapped_column(ForeignKey("tb_galpao.id"), nullable=False)
+
+    galpao: Mapped["Galpao"] = relationship("Galpao", back_populates="galinaceos")
+
+
+class GalinaceoSchema(Schema):
+    sist_cria = fields.Str(required=True, error_messages={
+                      "required": "Adicione um sistema de criação."})
+    niv_terr = fields.Str(required=True, error_messages={
+                      "required": "Adicione um nível de terreno."})
+    cod_terr = fields.Str(required=True, error_messages={
+                      "required": "Adicione um código de terreno."})
+    nom_terr = fields.Str(required=True, error_messages={
+                      "required": "Adicione um nome de terreno."})
+    cl_gal = fields.Str(required=True, error_messages={
+                      "required": "Adicione uma classe de galináceo."})
+    galpao_id = fields.Int(required=True, error_messages={
+                               "required": "Informe o galpão."})

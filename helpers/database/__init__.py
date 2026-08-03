@@ -1,9 +1,20 @@
 import psycopg2
 from flask import g
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
-from helpers.application import app
 from helpers.enviroment import enviroment
 
+
+class Base(DeclarativeBase):
+    pass
+
+
+db = SQLAlchemy(model_class=Base)
+
+'''
+    Conexão com o banco - Legado
+'''
 DATABASE_NAME = enviroment.get("DB_NAME")
 DATABASE_USER = enviroment.get("DB_USER")
 DATABASE_PASS = enviroment.get("DB_PASSWORD")
@@ -19,7 +30,6 @@ def get_conn():
     return conn
 
 
-@app.teardown_appcontext
 def close_connection(exception):
     conn = getattr(g, '_database', None)
     if conn is not None:

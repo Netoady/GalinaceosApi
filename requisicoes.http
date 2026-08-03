@@ -1,27 +1,27 @@
-### Teste 1: Buscar todos os registros (sem nenhum filtro)
+### Teste 1: Buscar todos os Galináceos
 GET http://localhost:5001/galinaceos
 Accept: application/json
 
 ###
 
-### Teste 2: Filtrar pelo Sistema de Criação (SIST_CRIA)
-GET http://localhost:5001/galinaceos?SIST_CRIA=1-SIST_POC
+### Teste 2: Filtrar pelo Sistema de Criação (sist_cria)
+GET http://localhost:5001/galinaceos?sist_cria=Intensivo
 Accept: application/json
 
 ###
 
-### Teste 3: Filtrar pelo Nível Territorial (NIV_TERR)
-GET http://localhost:5001/galinaceos?NIV_TERR=UF
+### Teste 3: Filtrar por Nome de Território (nom_terr)
+GET http://localhost:5001/galinaceos?nom_terr=Guarabira
 Accept: application/json
 
 ###
 
-### Teste 4: Filtrar combinando Múltiplos Filtros (SIST_CRIA + NIV_TERR + COD_TERR)
-GET http://localhost:5001/galinaceos?SIST_CRIA=1-SIST_POC&NIV_TERR=UF&COD_TERR=53
+### Teste 4: Buscar Avicultores
+GET http://localhost:5001/avicultores
 Accept: application/json
 
 ###
 
-### Teste 5: Filtrar por busca parcial no Nome do Território (NOM_TERR)
-GET http://localhost:5001/galinaceos?NOM_TERR=Distrito
+### Teste 5: Buscar Avícolas
+GET http://localhost:5001/aviculas
 Accept: application/json

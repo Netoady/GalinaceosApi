@@ -1,60 +1,74 @@
-import pandas as pd
-import numpy as np
+from datetime import date
 from helpers.application import app
-from helpers.database import get_conn
+from helpers.database import db
 
-def criar_tabela_e_carregar_dados():
-    print("1. Lendo e tratando o arquivo GALINACEOS.csv com Pandas...")
-    
-    # Lemos o CSV mapeando o separador ';' e tratando valores nulos ou vazios
-    df = pd.read_csv('GALINACEOS.csv', sep=';', na_values=['X', ' ', ''])
-    
-    # Tratamento inicial com Pandas/NumPy para evitar quebra de tipos no banco
-    df['COD_TERR'] = df['COD_TERR'].fillna(0).astype(int)
-    df['CL_GAL'] = df['CL_GAL'].fillna(0).astype(int)
-    
-    # Usamos o contexto do app do Flask para que o get_conn() funcione perfeitamente
+from models.Avicultor import Avicultor
+from models.Endereco import Endereco
+from models.Avicula import Avicula
+from models.Galpao import Galpao
+from models.Galinaceo import Galinaceo
+
+def popular_banco():
     with app.app_context():
-        conn = get_conn()
-        cursor = conn.cursor()
-        
-        print("2. Criando a tabela 'galinaceos' caso ela não exista...")
-        # Criamos a tabela com as 5 colunas principais de filtros + colunas auxiliares
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS galinaceos (
-                id SERIAL PRIMARY KEY,
-                sist_cria VARCHAR(100),
-                niv_terr VARCHAR(50),
-                cod_terr INTEGER,
-                nom_terr VARCHAR(150),
-                cl_gal INTEGER,
-                nom_cl_gal VARCHAR(150)
-            );
-        """)
-        conn.commit()
-        
-        print("3. Inserindo os dados do DataFrame no PostgreSQL...")
-        query_insert = """
-            INSERT INTO galinaceos (sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal)
-            VALUES (%s, %s, %s, %s, %s, %s);
-        """
-        
-        # O iterrows() do Pandas percorre linha por linha de forma eficiente
-        for index, row in df.iterrows():
-            valores = (
-                str(row['SIST_CRIA']) if pd.notna(row['SIST_CRIA']) else None,
-                str(row['NIV_TERR']) if pd.notna(row['NIV_TERR']) else None,
-                int(row['COD_TERR']),
-                str(row['NOM_TERR']) if pd.notna(row['NOM_TERR']) else None,
-                int(row['CL_GAL']),
-                str(row['NOM_CL_GAL']) if pd.notna(row['NOM_CL_GAL']) else None
+        try:
+            print("Iniciando o povoamento com SQLAlchemy...")
+
+            # 1. Instancia o Avicultor
+            avicultor = Avicultor(
+                nome="Chiquin Neto", 
+                nascimento=date(1988, 1, 12), 
+                cpf="12345678901", 
+                caf="CAF123456"
             )
-            cursor.execute(query_insert, valores)
-            
-        # Confirma todas as operações de uma vez só no banco
-        conn.commit()
-        cursor.close()
-        print(f"Sucesso total! {len(df)} registros foram extraídos e salvos no banco.")
+            db.session.add(avicultor)
+            db.session.flush()  # Gera o id do avicultor sem fechar a transação
+
+            # 2. Instancia o Endereço
+            endereco = Endereco(
+                logradouro="Rua dos Frango", 
+                numero="100", 
+                cep="58200000", 
+                avicultor_id=avicultor.id
+            )
+            db.session.add(endereco)
+
+            # 3. Instancia a Avícola
+            avicula = Avicula(
+                nome="Granja Ovo Feliz", 
+                cnpj="12345678000195", 
+                endereco="Sítio Galo Gago", 
+                avicultor_id=avicultor.id
+            )
+            db.session.add(avicula)
+            db.session.flush()  # Gera o id da avícola
+
+            # 4. Instancia o Galpão
+            galpao = Galpao(
+                identificador="Galpão 01 - Poedeiras", 
+                area_m2=500, 
+                avicula_id=avicula.id
+            )
+            db.session.add(galpao)
+            db.session.flush()  # Gera o id do galpão
+
+            # 5. Instancia os Galináceos
+            g1 = Galinaceo(
+                sist_cria="1-SIST_POC", 
+                niv_terr="UF", 
+                cod_terr="25", 
+                nom_terr="Paraíba", 
+                cl_gal="01",
+                galpao_id=galpao.id
+            )
+            db.session.add(g1)
+
+            # Confirma todas as inserções no banco
+            db.session.commit()
+            print("Sucesso! Banco populado via SQLAlchemy ORM.")
+
+        except Exception as e:
+            db.session.rollback()
+            print(f"Erro ao popular o banco via ORM: {e}")
 
 if __name__ == "__main__":
-    criar_tabela_e_carregar_dados()
+    popular_banco()

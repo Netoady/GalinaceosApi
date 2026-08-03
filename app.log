@@ -10,3 +10,39 @@
 2026-07-14 11:59:11,506 - INFO - Endpoint /galinaceos chamado com filtros opcionais
 2026-07-14 11:59:11,519 - INFO - Executando busca dinâmica de galináceos. Query: SELECT id, sist_cria, niv_terr, cod_terr, nom_terr, cl_gal, nom_cl_gal FROM galinaceos WHERE 1=1 AND sist_cria = %s AND niv_terr = %s AND cod_terr = %s
 2026-07-14 11:59:11,531 - INFO - Retornando 11 registros filtrados de galináceos
+2026-08-02 23:22:13,071 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:22:13,073 - ERROR - Erro ao criar o schema do banco de dados: name 'file' is not defined
+2026-08-02 23:31:50,501 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:38:00,982 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:41:46,868 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:41:46,896 - ERROR - Erro ao criar o schema do banco de dados: relation "tb_galpao" does not exist
+
+2026-08-02 23:47:48,334 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:47:48,354 - ERROR - Erro ao criar o schema do banco de dados: relation "tb_galpao" does not exist
+
+2026-08-02 23:53:20,478 - INFO - Iniciando a criação do schema do banco de dados...
+2026-08-02 23:53:20,560 - INFO - Schema do banco de dados criado com sucesso!
+2026-08-03 11:35:02,345 - INFO - Listando todos os galináceos
+2026-08-03 11:35:02,409 - INFO - Retornando 1 galináceos
+2026-08-03 11:35:08,408 - INFO - Listando todos os galináceos
+2026-08-03 11:35:08,409 - INFO - Retornando 1 galináceos
+2026-08-03 11:35:14,268 - INFO - Listando todos os galináceos
+2026-08-03 11:35:14,269 - INFO - Retornando 1 galináceos
+2026-08-03 11:35:22,908 - INFO - Listando todos os avicultores
+2026-08-03 11:35:22,912 - INFO - Retornando 1 avicultores
+2026-08-03 11:35:40,867 - INFO - Listando todos os aviculas
+2026-08-03 11:35:40,870 - INFO - Retornando 1 avículas
+2026-08-03 11:35:47,854 - INFO - Listando todos os avicultores
+2026-08-03 11:35:47,856 - INFO - Retornando 1 avicultores
+2026-08-03 11:39:06,763 - INFO - Listando todos os avicultores
+2026-08-03 11:39:06,766 - INFO - Retornando 1 avicultores
+2026-08-03 11:39:12,173 - INFO - Listando todos os aviculas
+2026-08-03 11:39:12,174 - INFO - Retornando 1 avículas
+2026-08-03 11:39:14,859 - INFO - Listando todos os galináceos
+2026-08-03 11:39:14,861 - INFO - Retornando 1 galináceos
+2026-08-03 11:39:17,539 - INFO - Listando todos os galináceos
+2026-08-03 11:39:17,541 - INFO - Retornando 1 galináceos
+2026-08-03 11:39:19,811 - INFO - Listando todos os galináceos
+2026-08-03 11:39:19,813 - INFO - Retornando 1 galináceos
+2026-08-03 11:40:16,767 - INFO - Listando todos os avicultores
+2026-08-03 11:40:16,799 - INFO - Retornando 1 avicultores

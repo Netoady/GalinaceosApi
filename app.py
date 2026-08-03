@@ -1,16 +1,28 @@
-from helpers.application import app
-from controller.GalinaceoController import galinaceos_bp
+from helpers.application import app, api
+from controller.IndexController import IndexController, HealthController
+from controller.AvicultorController import AvicultoresController, AvicultorController
+from controller.AviculaController import AviculasController, AviculaController
+from controller.EnderecoController import EnderecosController, EnderecoController
+from controller.GalpaoController import GalpoesController, GalpaoController
+from controller.GalinaceoController import GalinaceosController
 
+# Health / Index
+api.add_resource(IndexController, '/')
+api.add_resource(HealthController, '/health')
 
-app.register_blueprint(galinaceos_bp)
+# Endpoints Unificados
+api.add_resource(AvicultoresController, '/avicultores')
+api.add_resource(AvicultorController, '/avicultores/<int:avicultor_id>')
 
-@app.get("/")
-def index():
-    return '{"versao":"1.0.1"}', 200
+api.add_resource(AviculasController, '/aviculas')
+api.add_resource(AviculaController, '/aviculas/<int:avicula_id>')
 
-@app.get("/health")
-def healthCheck():
-    return "{'online':'true'}", 200
+api.add_resource(EnderecoController, '/enderecos')
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+api.add_resource(GalpoesController, '/galpoes')
+api.add_resource(GalpaoController, '/galpoes/<int:galpao_id>')
+
+api.add_resource(GalinaceosController, '/galinaceos')
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5001, debug=True)

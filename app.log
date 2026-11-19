@@ -46,3 +46,17 @@
 2026-08-03 11:39:19,813 - INFO - Retornando 1 galináceos
 2026-08-03 11:40:16,767 - INFO - Listando todos os avicultores
 2026-08-03 11:40:16,799 - INFO - Retornando 1 avicultores
+2026-11-17 14:22:55,558 - INFO - Listando todos os galináceos
+2026-11-17 14:22:58,921 - INFO - Listando todos os galináceos
+2026-11-17 14:23:01,343 - INFO - Listando todos os galináceos
+2026-11-17 14:24:21,501 - INFO - Listando todos os galináceos
+2026-11-17 14:24:26,906 - INFO - Listando todos os galináceos
+2026-11-17 14:24:29,108 - INFO - Listando todos os avicultores
+2026-11-17 14:24:32,018 - INFO - Listando todos os galináceos
+2026-11-17 14:34:28,608 - INFO - Listando todos os galináceos
+2026-11-17 14:37:43,072 - ERROR - Erro ao criar o schema do banco de dados: (psycopg.OperationalError) connection failed: connection to server at "127.0.0.1", port 5435 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+(Background on this error at: https://sqlalche.me/e/21/e3q8)
+2026-11-17 14:38:02,299 - INFO - Listando todos os galináceos
+2026-11-17 14:38:56,278 - INFO - Listando todos os galináceos
+2026-11-17 14:39:01,359 - INFO - Listando todos os avicultores

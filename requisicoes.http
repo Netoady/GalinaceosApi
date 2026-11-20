@@ -24,4 +24,4 @@ Accept: application/json
 
 ### Teste 5: Buscar Avícolas
 GET http://localhost:5001/aviculas
-Accept: application/json
+Accept: application/jsonflas
